@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import PomodoroTimer from './PomodoroTimer';
 import TodoList from './TodoList';
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-  const userEmail = localStorage.getItem('user_email') || 'User';
   const [mode, setMode] = useState('work');
-
-  const handleLogout = () => {
-    localStorage.removeItem('user_email');
-    navigate('/login');
-  };
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
@@ -27,15 +19,8 @@ export default function Dashboard() {
         <Row className="mb-4">
           <Col className="d-flex justify-content-between align-items-center">
             <h4 className="text-light">
-              Welcome back, <span className={mode === 'work' ? 'text-primary' : 'text-success'}>{userEmail}</span>
+              Welcome back, <span className={mode === 'work' ? 'text-primary' : 'text-success'}>User</span>
             </h4>
-            <Button 
-              variant="outline-danger" 
-              onClick={handleLogout}
-              className="rounded-pill px-4 btn-dark-mode"
-            >
-              Log Out
-            </Button>
           </Col>
         </Row>
         
